@@ -1,0 +1,39 @@
+autostart = False
+version = 0.8.2-BETA
+[qemu 127.0.0.1:10525]
+    workingdir = working
+    udp = 20000
+    [[IDS-4215]]
+        image1 = C:\cisco\Cisco IPS & IDS Vmware\ipsdisk1.img
+        image2 = C:\cisco\Cisco IPS & IDS Vmware\ipsdisk2.img
+        nics = 3
+        ram = 1024
+        netcard = e1000
+        options = -smbios type=1,product=IDS-4215
+    [[IDS IDS1]]
+        e0 = SW1 1
+        x = -379.5
+        y = -156.5
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[ETHSW SW1]]
+        1 = access 1 IDS1 e0
+        2 = access 1 nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+        x = -392.5
+        y = -18.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = Sensor \nuser cisco\npassword cisco@123\nnetwork 10.0.0.2/8 server\nnetwork Sensor 10.0.0.3/8\n\nconfig t\nservice host\nnetwork-settings\nhost-ip 1.1.1.2/8,1.1.1.1\naccess-list 1.0.0.0/8\nhost-name omir\nexit\nexit\nyes\nexit\nexit\nping 1.1.1.3
+        x = -143.0
+        y = -91.0
+        z = 2.0
+    [[Cloud C1]]
+        x = -440.5
+        y = 135.0
+        z = 1.0
+        connections = SW1:2:nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
