@@ -1,0 +1,88 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7202]
+    workingdir = working
+    udp = 10200
+    [[3745]]
+        image = C:\cisco\1.Router IOS for GNS3\c3745-adventerprisek.124-25d.bin
+        ram = 256
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        model = 3745
+        console = 2003
+        aux = 2503
+        f0/0 = R2 f0/1
+        cnfg = configs\R3.cfg
+        x = 316.0
+        y = -256.0
+        z = 1.0
+[127.0.0.1:7203]
+    workingdir = working
+    udp = 10300
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[3745]]
+        image = C:\cisco\1.Router IOS for GNS3\c3745-adventerprisek.124-25d.bin
+        ram = 256
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        model = 3745
+        console = 2001
+        aux = 2501
+        f0/0 = R2 f0/0
+        cnfg = configs\R1.cfg
+        x = -363.0
+        y = -255.0
+        z = 1.0
+    [[ROUTER R2]]
+        model = 3745
+        console = 2002
+        aux = 2502
+        f0/0 = R1 f0/0
+        f0/1 = R3 f0/0
+        cnfg = configs\R2.cfg
+        x = -31.0
+        y = -255.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 23.0.0.0/24
+        x = 103.0
+        y = -262.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 12.0.0.0/24
+        x = -219.0
+        y = -262.0
+        z = 2.0
+    [[NOTE 3]]
+        text = f0/0
+        x = -34.9998339005
+        y = 20.1152732965
+        interface = R3 f0/0
+        z = 2.0
+    [[NOTE 4]]
+        text = f0/1
+        x = 72.9998339005
+        y = 21.8847267035
+        interface = R2 f0/1
+        z = 2.0
+    [[NOTE 5]]
+        text = f0/0
+        x = -46.0
+        y = 21.0
+        interface = R2 f0/0
+        z = 2.0
+    [[NOTE 6]]
+        text = f0/0
+        x = 73.0
+        y = 22.0
+        interface = R1 f0/0
+        z = 2.0

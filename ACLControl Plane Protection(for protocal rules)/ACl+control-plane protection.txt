@@ -1,0 +1,30 @@
+command working in 3700 ser router
+////////////////////rule////////////////////////////////
+R2(config)#ip access-list extended 100
+R2(config-ext-nacl)#permit tcp any any eq 23
+///////////////////make set of rules////////////////////////
+R2(config)#class-map cmap
+R2(config-cmap)#match access-group 100
++++++++++++++++++make a policy for rules++++++++++++++++
+R2(config)#policy-map pmap
+R2(config-pmap)#class cmap
+R2(config-pmap-c)#drop
+++++++++++++++++++apply the policy in system+++++++++++++
+R2(config)#control-plane
+R2(config-cp)#service-policy input pmap
+
+=================show command=============================
+R2#show run | section class-map
+class-map match-all cmap
+ match access-group 100
+
+R2#show run | section policy-map pmap
+policy-map pmap
+ class cmap
+   drop
+
+R2#show run | section control-plane
+control-plane
+ service-policy input pmap
+
+R2#

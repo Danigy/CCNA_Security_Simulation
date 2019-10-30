@@ -1,0 +1,274 @@
+===========================================ACL============================================
+Routing – ACL 120
+
+!-- ACL for CoPP Routing class-map
+!
+access-list 120 permit tcp any gt 1024 <router receive block> eq bgp
+access-list 120 permit tcp any eq bgp <router receive block> gt 1024 established
+access-list 120 permit tcp any gt 1024 <router receive block> eq 639
+access-list 120 permit tcp any eq 639 <router receive block> gt 1024 established
+access-list 120 permit tcp any <router receive block> eq 646
+access-list 120 permit udp any <router receive block> eq 646
+access-list 120 permit ospf any <router receive block> 
+access-list 120 permit ospf any host 224.0.0.5 
+access-list 120 permit ospf any host 224.0.0.6 
+access-list 120 permit eigrp any <router receive block> 
+access-list 120 permit eigrp any host 224.0.0.10 
+access-list 120 permit udp any any eq pim-auto-rp
+---etc--- for other routing protocol traffic...
+=============================================ACL============================================
+Management – ACL 121
+
+! – ACL for CoPP Management class
+!
+access-list 121 permit tcp <NOC block> <router receive block> eq telnet
+access-list 121 permit tcp <NOC block> eq telnet <router receive block> established
+access-list 121 permit tcp <NOC block> <router receive block> eq 22
+access-list 121 permit tcp <NOC block> eq 22 <router receive block> established
+access-list 121 permit udp <NOC block> <router receive block> eq snmp
+access-list 121 permit tcp <NOC block> <router receive block> eq www
+access-list 121 permit udp <NOC block> <router receive block> eq 443
+access-list 121 permit tcp <NOC block> <router receive block> eq ftp
+access-list 121 permit tcp <NOC block> <router receive block> eq ftp-data
+access-list 121 permit udp <NOC block> <router receive block> eq syslog
+access-list 121 permit udp <DNS block> eq domain <router receive block>
+access-list 121 permit udp <NTP block> <router receive block> eq ntp
+---etc--- for known good management traffic...
+=========================================ACL================================================
+Normal – ACL 122
+
+!-- ACL for CoPP Normal class-map
+!
+access-list 122 permit icmp any <router receive block> echo
+access-list 122 permit icmp any <router receive block> echo-reply
+access-list 122 permit icmp any <router receive block> ttl-exceeded
+access-list 122 permit icmp any <router receive block> packet-too-big
+access-list 122 permit icmp any <router receive block> port-unreachable
+access-list 122 permit icmp any <router receive block> unreachable
+access-list 122 permit pim any any
+access-list 122 permit igmp any any
+access-list 122 permit gre any any
+---etc--- for other known good traffic...
+===========================================ACL==============================================
+Undesirable – ACL 123
+
+! -- ACL for CoPP Undesirable class-map
+!
+access-list 123 permit icmp any any fragments
+access-list 123 permit udp any any fragments
+access-list 123 permit tcp any any fragments
+access-list 123 permit ip any any fragments
+access-list 123 permit udp any any eq 1434
+access-list 123 permit tcp any any eq 639 rst
+access-list 123 permit tcp any any eq bgp rst
+--- etc. all other known bad things here– 
+==========================================ACL==============================================
+Catch-All IP – ACL 124
+
+! -- ACL for CoPP Catch-All class-map
+!
+access-list 124 permit tcp any any
+access-list 124 permit udp any any
+access-list 124 permit icmp any any
+access-list 124 permit ip any any
+======================================Class-Map===============================================
+!
+! – CoPP Routing class-map
+!
+class-map match-all Routing
+ match access-group 120
+!
+! – CoPP Management class-map
+!
+class-map match-all Management
+ match access-group 121
+!
+! – CoPP Normal class-map
+!
+class-map match-all Normal
+ match access-group 122
+!
+! – CoPP Undesirable class-map
+!
+class-map match-all Undesirable
+ match access-group 123
+!
+! – CoPP Catch-All-IP class-map
+!
+class-map match-all Catch-All-IP
+ match access-group 124
+!
+===================================Policy-Map===========================================
+!
+policy-map RTR_CoPP
+ class Undesirable
+ police 8000 1500 1500 conform-action drop exceed-action drop
+ class Routing
+ police 1000000 50000 50000 conform-action transmitexceed-action transmit
+ class Management
+ police 100000 20000 20000 conform-action transmit exceed-action drop
+ class Normal
+ police 50000 5000 5000 conform-action transmit exceed-action drop
+ class Catch-All-IP
+ police 50000 5000 5000 conform-action transmit exceed-action drop
+ class class-default
+ police 8000 1500 1500 conform-action transmit exceed-action transmit
+!
+============================Apply Policy in Control Plane===================================
+!
+control-plane
+ service-policy input RTR_CoPP
+!
+============================================================================================
+============================================================================================
+==============================All Final configuration=======================================
+============================================================================================
+============================================================================================
+RTR#show running-config
+Building configuration...
+ .
+ . ---<skip>---
+!
+class-map match-all Catch-All-IP
+ match access-group 124
+class-map match-all Management
+ match access-group 121
+class-map match-all Normal
+ match access-group 122
+class-map match-all Undesirable
+ match access-group 123
+class-map match-all Routing
+ match access-group 120
+!
+policy-map RTR_CoPP
+ class Undesirable
+ police 8000 1500 1500 conform-action drop exceed-action drop
+ class Routing
+ police 1000000 50000 50000 conform-action transmit exceed-action transmit
+ class Management
+ police 100000 20000 20000 conform-action transmit exceed-action drop
+ class Normal
+ police 50000 5000 5000 conform-action transmit exceed-action drop
+ class Catch-All-IP
+ police 50000 5000 5000 conform-action transmit exceed-action drop
+ class class-default
+ police 8000 1500 1500 conform-action transmit exceed-action transmit
+!
+access-list 120 permit tcp any gt 1024 10.0.1.0 0.0.0.255 eq bgp
+access-list 120 permit tcp any eq bgp 10.0.1.0 0.0.0.255 gt 1024 established
+access-list 120 permit tcp any gt 1024 10.0.1.0 0.0.0.255 eq 639
+access-list 120 permit tcp any eq 639 10.0.1.0 0.0.0.255 gt 1024 established
+access-list 120 permit tcp any 10.0.1.0 0.0.0.255 eq 646
+access-list 120 permit udp any 10.0.1.0 0.0.0.255 eq 646
+access-list 120 permit ospf any 10.0.1.0 0.0.0.255
+access-list 120 permit ospf any host 224.0.0.5
+access-list 120 permit ospf any host 224.0.0.6
+access-list 120 permit eigrp any 10.0.1.0 0.0.0.255
+access-list 120 permit eigrp any host 224.0.0.10
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq telnet
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 eq telnet 10.0.1.0 0.0.0.255 established
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq 22
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 eq 22 10.0.1.0 0.0.0.255 established
+access-list 121 permit udp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq snmp
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq www
+access-list 121 permit udp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq 443
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq ftp
+access-list 121 permit tcp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq ftp-data
+access-list 121 permit udp 10.0.2.0 0.0.0.255 10.0.1.0 0.0.0.255 eq syslog
+access-list 121 permit udp 10.0.3.0 0.0.0.255 eq domain 10.0.1.0 0.0.0.255
+access-list 121 permit udp 10.0.4.0 0.0.0.255 10.0.1.0 0.0.0.255 eq ntp
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 echo
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 echo-reply
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 ttl-exceeded
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 packet-too-big
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 port-unreachable
+access-list 122 permit icmp any 10.0.1.0 0.0.0.255 unreachable
+access-list 122 permit pim any any
+access-list 122 permit udp any any eq pim-auto-rp
+access-list 122 permit igmp any any
+access-list 122 permit gre any any
+access-list 123 permit icmp any any fragments
+access-list 123 permit udp any any fragments
+access-list 123 permit tcp any any fragments
+access-list 123 permit ip any any fragments
+access-list 123 permit udp any any eq 1434
+access-list 123 permit tcp any any eq 639 rst
+access-list 123 permit tcp any any eq bgp rst
+access-list 124 permit tcp any any
+access-list 124 permit udp any any
+access-list 124 permit icmp any any
+access-list 124 permit ip any any
+!
+control-plane
+ service-policy input RTR_CoPP
+!
+RTR#show policy-map control-plane
+ Control Plane
+ Service-policy input: RTR_CoPP
+ Class-map: Undesirable (match-all)
+  0 packets, 0 bytes
+  5 minute offered rate 0 bps, drop rate 0 bps
+  Match: access-group 123
+  police:
+   cir 8000 bps, bc 1500 bytes
+  conformed 0 packets, 0 bytes; actions:
+   drop
+  exceeded 0 packets, 0 bytes; actions:
+   drop
+  conformed 0 bps, exceed 0 bps
+ Class-map: Routing (match-all)
+  0 packets, 0 bytes
+  5 minute offered rate 0 bps, drop rate 0 bps
+  Match: access-group 120
+  police:
+   cir 1000000 bps, bc 50000 bytes
+  conformed 0 packets, 0 bytes; actions:
+   transmit
+  exceeded 0 packets, 0 bytes; actions:
+   transmit
+  conformed 0 bps, exceed 0 bps
+ Class-map: Management (match-all)
+  0 packets, 0 bytes
+  5 minute offered rate 0 bps, drop rate 0 bps
+  Match: access-group 121
+  police:
+   cir 100000 bps, bc 20000 bytes
+  conformed 0 packets, 0 bytes; actions:
+   transmit
+  exceeded 0 packets, 0 bytes; actions:
+   drop
+  conformed 0 bps, exceed 0 bps
+ Class-map: Normal (match-all)
+  0 packets, 0 bytes
+  5 minute offered rate 0 bps, drop rate 0 bps
+  Match: access-group 122
+  police:
+   cir 50000 bps, bc 5000 bytes
+  conformed 0 packets, 0 bytes; actions:
+   transmit
+  exceeded 0 packets, 0 bytes; actions:
+   drop
+  conformed 0 bps, exceed 0 bps
+ Class-map: Catch-All-IP (match-all)
+  50461 packets, 24038351 bytes
+  5 minute offered rate 4000 bps, drop rate 0 bps
+  Match: access-group 124
+  police:
+   cir 50000 bps, bc 5000 bytes
+  conformed 50444 packets, 24031001 bytes; actions:
+   transmit
+  exceeded 17 packets, 7350 bytes; actions:
+   drop
+  conformed 4000 bps, exceed 0 bps
+ Class-map: class-default (match-any)
+  16785 packets, 1183331 bytes
+  5 minute offered rate 0 bps, drop rate 0 bps
+  Match: any
+  police:
+   cir 8000 bps, bc 1500 bytes
+  conformed 16658 packets, 1175711 bytes; actions:
+   transmit
+  exceeded 127 packets, 7620 bytes; actions:
+   transmit
+  conformed 0 bps, exceed 0 bps
+RTR#
