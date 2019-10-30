@@ -1,0 +1,49 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        console = 2001
+        aux = 2501
+        slot1 = PA-2FE-TX
+        f1/0 = R2 f1/0
+        cnfg = configs\R1.cfg
+        x = -238.0
+        y = -241.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        console = 2002
+        aux = 2502
+        slot1 = PA-2FE-TX
+        f1/0 = R1 f1/0
+        cnfg = configs\R2.cfg
+        x = 187.0
+        y = -239.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = Class Map: Identify the traffic\nexample=========================\nR1(config)#class-map cmap\nR1(config-cmap)#match access-group name abc\n\nPolicy Map: Action\nexample=========================\nR1(config)#policy-map pmap\nR1(config-pmap)#class cmap\n\nR1(config-pmap-c)#police 8000 conform-action transmit exceed-action drop\n\nService Policy: apply on traffic\nexample=========================\nR1(config)#control-plane\nR1(config-cp)#service-policy pmap
+        x = -170.0
+        y = -134.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 12.0.0.0/24
+        x = -83.0
+        y = -260.0
+        z = 2.0

@@ -1,0 +1,13 @@
+R1(config)#ip access-list extended abc
+R1(config-ext-nacl)#permit icmp host 12.0.0.1 host 12.0.0.2
+
+R1(config)#class-map cmap
+R1(config-cmap)#match access-group name abc
+
+R1(config)#policy-map pmap
+R1(config-pmap)#class cmap
+
+R1(config-pmap-c)#police 8000 conform-action transmit exceed-action drop
+
+R2(config)#control-plane
+R2(config-cp)#service-policy pmap
