@@ -1,0 +1,30 @@
+R1(config)#class-map cmap
+R1(config-cmap)#match protocol telnet
+
+R1(config)#policy-map pmap
+R1(config-pmap)#class cmap
+
+R1(config-pmap-c-police)#police 8000 conform-action transmit exceed-action drop
+
+R1(config-cp)#service-policy input pmap
+Match NBAR protocol is not supported for this interface
+error: failed to install policy map pmap
+R1(config-cp)#service-policy input pmap
+Match NBAR protocol is not supported for this interface
+error: failed to install policy map pmap
+R1(config-cp)#
+=======================================================================
+Control plane protection does not support protocol block 
+only support ARP and PPPOE
+protoclo
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class map cmap
+match protocol telnet
+match protocol ssh
+match protocol http
+match protocol https
+
+class map not support protocol worng way for config
+1) firstly make a ACL and define the rules
+2) apply on Class-map
+R(c)#match access-group 111
