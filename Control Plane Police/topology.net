@@ -1,0 +1,74 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7202]
+    workingdir = working
+    udp = 10200
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R4]]
+        console = 2005
+        aux = 2505
+        cnfg = configs\R4.cfg
+        slot1 = PA-2FE-TX
+        f1/0 = R3 f1/0
+        x = 257.0
+        y = -230.0
+        z = 1.0
+[127.0.0.1:7203]
+    workingdir = working
+    udp = 10300
+    [[3725]]
+        image = C:\cisco\1.Router IOS for GNS3\c3725-adventerprisek9-mz124-15.bin
+        ram = 256
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R5]]
+        model = 3725
+        console = 2006
+        aux = 2506
+        cnfg = configs\R5.cfg
+        f0/0 = R6 f0/0
+        x = -330.0
+        y = -101.0
+        z = 1.0
+    [[ROUTER R6]]
+        model = 3725
+        console = 2007
+        aux = 2507
+        cnfg = configs\R6.cfg
+        f0/0 = R5 f0/0
+        x = 261.0
+        y = -98.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        console = 2004
+        aux = 2504
+        cnfg = configs\R3.cfg
+        slot1 = PA-2FE-TX
+        f1/0 = R4 f1/0
+        x = -331.0
+        y = -229.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 12.1.1.0/24
+        x = -41.0
+        y = -155.0
+        z = 2.0

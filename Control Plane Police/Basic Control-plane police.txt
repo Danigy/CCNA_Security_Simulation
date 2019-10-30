@@ -1,0 +1,62 @@
+7200A(config)#ip access-list extended abc
+7200A(config-ext-nacl)#permit icmp any any
+
+7200A(config)#class-map cmap
+7200A(config-cmap)#match access-group name abc
+7200A(config-cmap)#ex
+
+7200A(config)#policy-map pmap
+7200A(config-pmap)#class cmap
+7200A(config-pmap-c)#police 8000 conform-action transmit exceed-action drop
+7200A(config-pmap-c-police)#exit
+7200A(config-pmap-c)#exit
+7200A(config-pmap)#exit
+
+7200A(config)#control-plane
+7200A(config-cp)#service-policy input pmap
+7200A(config-cp)#exit
+
+7200A(config)#do ping 12.1.1.1 size 100 repeat 1000
+Type escape sequence to abort.
+Sending 1000, 100-byte ICMP Echos to 12.1.1.1, timeout is 2 seconds:
+!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!
+            drop           drop            drop          drop
+!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!
+!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.
+!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!
+!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!
+!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.
+!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!
+!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!
+!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.
+!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!
+!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!
+!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.
+!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!
+!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!!!!!!!!!!.!!!!!
+!!!!!!!!!.!!!!!!!!!!
+Success rate is 93 percent (934/1000), round-trip min/avg/max = 4/8/24 ms
+7200A(config)#
+==========================================================================================
+
+3700A(config)#ip access-list extended abc
+3700A(config-ext-nacl)#permit icmp any any
+3700A(config-ext-nacl)#ex
+
+3700A(config)#class-map cmap
+3700A(config-cmap)#match access-group name abc
+3700A(config-cmap)#ex
+
+3700A(config)#policy-map pmap
+3700A(config-pmap)#class cmap
+3700A(config-pmap-c)#police 8000 conform-action transmit exceed-action drop
+3700A(config-pmap-c-police)#exit
+3700A(config-pmap-c)#exit
+3700A(config-pmap)#exit
+
+3700A(config)#control-plane
+3700A(config-cp)#service-policy input pmap
+3700A(config-cp)#
+*Mar  1 01:13:25.787: %CP-5-FEATURE: Control-plane Policing feature enabled on Control plane aggregate path
+
+3700A(config-cp)#
