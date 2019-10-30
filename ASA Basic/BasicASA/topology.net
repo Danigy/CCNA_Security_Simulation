@@ -1,0 +1,101 @@
+autostart = False
+version = 0.8.2-BETA
+[qemu 127.0.0.1:10525]
+    workingdir = working
+    udp = 20000
+    [[5520]]
+        ram = 1024
+        netcard = e1000
+        options = -vnc none -vga none -m 1024 -icount auto -hdachs 980,16,32
+        initrd = C:\cisco\ASA\asa842-initrd.gz
+        kernel = C:\cisco\ASA\asa842-vmlinuz
+        kernel_cmdline = append ide_generic.probe_mask=0x01 ide_core.chs=0.0:980,16,32 auto nousb console=ttyS0,9600 bigphysarea=65536
+    [[ASA ASA1]]
+        e0 = R2 f1/0
+        e1 = R1 f1/0
+        x = -46.0
+        y = -102.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[7200]]
+        image = C:\cisco\router\c7200-jk9o3s-mz.124-19.bin
+        ram = 512
+        idlepc = 0x60664be0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        console = 2001
+        aux = 2501
+        slot1 = PA-2FE-TX
+        f1/0 = ASA1 e1
+        cnfg = configs\R1.cfg
+        x = -306.0
+        y = -100.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[7200]]
+        image = C:\cisco\router\c7200-jk9o3s-mz.124-19.bin
+        ram = 512
+        idlepc = 0x60664be0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        console = 2002
+        aux = 2502
+        slot1 = PA-2FE-TX
+        f1/0 = ASA1 e0
+        cnfg = configs\R2.cfg
+        x = 240.0
+        y = -99.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 2.2.2.0/24
+        x = 312.0
+        y = -90.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 1.1.1.0/24
+        x = -387.0
+        y = -86.0
+        z = 2.0
+    [[NOTE 3]]
+        text = 20.0.0.0/8
+        x = 87.0
+        y = -113.0
+        z = 2.0
+    [[NOTE 4]]
+        text = 10.0.0.0/8
+        x = -194.0
+        y = -115.0
+        z = 2.0
+    [[NOTE 5]]
+        text = f1/0
+        x = -41.997799585
+        y = 21.5804426617
+        interface = R2 f1/0
+        z = 2.0
+    [[NOTE 6]]
+        text = f1/0
+        x = 74.9988166206
+        y = 23.6923167952
+        interface = R1 f1/0
+        z = 2.0
+    [[NOTE 7]]
+        text = e0
+        x = 72.997799585
+        y = 22.4195573383
+        interface = ASA1 e0
+        z = 2.0
+    [[NOTE 8]]
+        text = e1
+        x = -32.9988166206
+        y = 22.3076832048
+        interface = ASA1 e1
+        z = 2.0

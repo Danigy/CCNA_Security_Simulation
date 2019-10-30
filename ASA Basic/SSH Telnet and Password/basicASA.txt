@@ -1,0 +1,20 @@
+ciscoasa(config)# int g0
+ciscoasa(config-if)# ip add 10.0.0.3 255.0.0.0
+ciscoasa(config-if)# nameif inside
+INFO: Security level for "inside" set to 100 by default.
+ciscoasa(config-if)# no sh
+ciscoasa(config-if)# wr
+
+////////////////////////////////////////////
+
+ciscoasa(config)# enable password cisco
+ciscoasa(config)# telnet 10.0.0.0 255.0.0.0 inside
+ciscoasa(config)# telnet timeout 30
+ciscoasa(config)# wr
+
+////////////////////////////////////////////
+
+ciscoasa(config)# user cisco password cisco
+ciscoasa(config)# aaa authentication ssh console LOCAL
+ciscoasa(config)# crypto key generate rsa modulus 1024
+ciscoasa(config)# ssh 10.0.0.0 255.0.0.0 inside

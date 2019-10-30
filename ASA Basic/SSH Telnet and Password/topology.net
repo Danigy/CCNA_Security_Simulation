@@ -1,0 +1,63 @@
+autostart = False
+version = 0.8.2-BETA
+[qemu 127.0.0.1:10525]
+    workingdir = working
+    udp = 20000
+    [[5520]]
+        ram = 1024
+        netcard = e1000
+        options = -vnc none -vga none -m 1024 -icount auto -hdachs 980,16,32
+        initrd = C:\cisco\ASA\asa842-initrd.gz
+        kernel = C:\cisco\ASA\asa842-vmlinuz
+        kernel_cmdline = append ide_generic.probe_mask=0x01 ide_core.chs=0.0:980,16,32 auto nousb console=ttyS0,9600 bigphysarea=65536
+    [[ASA ASA1]]
+        e0 = SW1 1
+        x = -401.0
+        y = -168.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[ETHSW SW1]]
+        1 = access 1 ASA1 e0
+        2 = access 1 nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+        x = -406.5
+        y = -8.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = Telnet\nSSH\n10.0.0.0\nRSA\n10.0.0.2 interface G0\nclient 10.0.0.3
+        x = -214.0
+        y = -143.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 2
+        x = 62.3178339638
+        y = 36.7455530534
+        interface = SW1 2
+        z = 2.0
+    [[NOTE 3]]
+        text = 1
+        x = 42.2790729678
+        y = -34.9924123467
+        interface = SW1 1
+        z = 2.0
+    [[NOTE 4]]
+        text = nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+        x = -29.2722924547
+        y = 64.5680586833
+        interface = C1 nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+        z = 2.0
+    [[Cloud C1]]
+        x = -373.5
+        y = 108.0
+        z = 1.0
+        connections = SW1:2:nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+    [[NOTE 5]]
+        text = e0
+        x = 39.2209270322
+        y = 48.9924123467
+        interface = ASA1 e0
+        z = 2.0
