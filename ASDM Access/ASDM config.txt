@@ -1,0 +1,30 @@
+ciscoasa(config)# int g0
+ciscoasa(config-if)# ip add 10.0.0.3 255.0.0.0
+ciscoasa(config-if)# nameif inside
+ciscoasa(config-if)# no sh
+==============================================
+ciscoasa(config)# enable password cisco
+ciscoasa(config)# user cisco password cisco
+ciscoasa(config)# aaa authentication ssh console LOCAL
+ciscoasa(config)# crypto key generate rsa modulus 1024
+ciscoasa(config)# ssh 10.0.0.0 255.0.0.0 inside
+ciscoasa(config)#
+--------------------------------------------------
+ciscoasa(config)# copy tftp flash
+
+Address or name of remote host []? 10.0.0.2
+
+Source filename []? asdm-711.bin
+
+Destination filename [asdm-711.bin]?
+
+Accessing tftp://10.0.0.2/asdm-711.bin...!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Writing current ASDM file disk0:/asdm-711.bin
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+17789808 bytes copied in 60.660 secs (296496 bytes/sec)
+
+ciscoasa(config)# http server enable
+ciscoasa(config)# http 10.0.0.0 255.0.0.0
+ciscoasa(config)# http 10.0.0.0 255.0.0.0 inside
+
