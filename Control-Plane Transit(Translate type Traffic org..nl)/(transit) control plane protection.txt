@@ -1,0 +1,42 @@
+
+class-map match-all cmap
+ match access-group name ccie
+!
+!
+policy-map pmap
+ class cmap
+    log
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 12.0.0.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ ip address 23.0.0.1 255.255.255.0
+ duplex auto
+ speed auto
+
+ip access-list extended ccie
+ permit ip any any
+!
+ip access-list log-update threshold 1
+!
+!
+!
+!
+!
+control-plane transit
+ service-policy input pmap
+!
+!
+control-plane
+
+
+R2(config)#control-plane transit
+!
+R2(config-cp-transit)#service-policy input pmap
