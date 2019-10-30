@@ -1,0 +1,91 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7202]
+    workingdir = working
+    udp = 10200
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        console = 2003
+        aux = 2503
+        slot1 = PA-2FE-TX
+        f1/0 = R2 f1/1
+        cnfg = configs\R3.cfg
+        x = 287.0
+        y = -98.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        console = 2001
+        aux = 2501
+        slot1 = PA-2FE-TX
+        f1/0 = R2 f1/0
+        cnfg = configs\R1.cfg
+        x = -355.0
+        y = -104.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        console = 2002
+        aux = 2502
+        slot1 = PA-2FE-TX
+        f1/0 = R1 f1/0
+        f1/1 = R3 f1/0
+        cnfg = configs\R2.cfg
+        x = -51.0
+        y = -100.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 23.0.0.0/24
+        x = 102.0
+        y = -116.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 12.0.0.0/24
+        x = -233.0
+        y = -127.0
+        z = 2.0
+    [[NOTE 3]]
+        text = f1/0
+        x = -38.9992997628
+        y = 19.7633177529
+        interface = R3 f1/0
+        z = 2.0
+    [[NOTE 4]]
+        text = f1/1
+        x = 72.9992997628
+        y = 22.2366822471
+        interface = R2 f1/1
+        z = 2.0
+    [[NOTE 5]]
+        text = f1/0
+        x = -42.9965378457
+        y = 21.4737297652
+        interface = R2 f1/0
+        z = 2.0
+    [[NOTE 6]]
+        text = f1/0
+        x = 72.9965378457
+        y = 22.5262702348
+        interface = R1 f1/0
+        z = 2.0
