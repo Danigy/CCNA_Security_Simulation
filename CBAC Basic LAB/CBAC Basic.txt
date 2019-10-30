@@ -1,0 +1,274 @@
+##################################CBAC DB################################################
+EDGE(config)#do show ip port-map
+Default mapping:  snmp                 udp port 161                        system defined
+Default mapping:  echo                 tcp port 7                          system defined
+Default mapping:  echo                 udp port 7                          system defined
+Default mapping:  telnet               tcp port 23                         system defined
+Default mapping:  wins                 tcp port 1512                       system defined
+Default mapping:  n2h2server           tcp port 9285                       system defined
+Default mapping:  n2h2server           udp port 9285                       system defined
+Default mapping:  nntp                 tcp port 119                        system defined
+Default mapping:  pptp                 tcp port 1723                       system defined
+Default mapping:  rtsp                 tcp port 554,8554                   system defined
+Default mapping:  bootpc               udp port 68                         system defined
+Default mapping:  gdoi                 udp port 848                        system defined
+Default mapping:  tacacs               udp port 49                         system defined
+Default mapping:  gopher               tcp port 70                         system defined
+Default mapping:  icabrowser           udp port 1604                       system defined
+Default mapping:  skinny               tcp port 2000                       system defined
+Default mapping:  sunrpc               tcp port 111                        system defined
+Default mapping:  sunrpc               udp port 111                        system defined
+Default mapping:  biff                 udp port 512                        system defined
+Default mapping:  router               udp port 520                        system defined
+Default mapping:  entrust-svc-hdlr     tcp port 709,710                    system defined
+Default mapping:  entrust-svc-hdlr     udp port 709,710                    system defined
+Default mapping:  ircs                 tcp port 994                        system defined
+Default mapping:  orasrv               tcp port 1525...1529                system defined
+Default mapping:  ms-cluster-net       udp port 3343                       system defined
+Default mapping:  kermit               tcp port 1649                       system defined
+Default mapping:  gnutella             tcp port 6346...6349                system defined
+Default mapping:  gnutella             tcp port 6355,5634                  system defined
+Default mapping:  gnutella             udp port 6346...6348                system defined
+Default mapping:  isakmp               udp port 500                        system defined
+Default mapping:  sshell               tcp port 614                        system defined
+Default mapping:  sshell               udp port 614                        system defined
+Default mapping:  realsecure           tcp port 2998                       system defined
+Default mapping:  ircu                 tcp port 6665,6666                  system defined
+Default mapping:  ircu                 udp port 6665,6666                  system defined
+Default mapping:  appleqtc             udp port 458                        system defined
+Default mapping:  pwdgen               tcp port 129                        system defined
+Default mapping:  pwdgen               udp port 129                        system defined
+Default mapping:  rdb-dbs-disp         tcp port 1571                       system defined
+Default mapping:  rdb-dbs-disp         udp port 1571                       system defined
+Default mapping:  creativepartnr       udp port 455                        system defined
+Default mapping:  creativepartnr       tcp port 455                        system defined
+Default mapping:  finger               tcp port 79                         system defined
+Default mapping:  ftps                 tcp port 990                        system defined
+Default mapping:  giop                 udp port 2481,2482                  system defined
+Default mapping:  giop                 tcp port 2481,2482                  system defined
+Default mapping:  rsvd                 tcp port 168                        system defined
+Default mapping:  rsvd                 udp port 168                        system defined
+Default mapping:  hp-alarm-mgr         udp port 383                        system defined
+Default mapping:  hp-alarm-mgr         tcp port 383                        system defined
+Default mapping:  uucp                 tcp port 540,541                    system defined
+Default mapping:  uucp                 udp port 540,541                    system defined
+Default mapping:  kerberos             tcp port 88,464,749                 system defined
+Default mapping:  kerberos             udp port 464,750                    system defined
+Default mapping:  imap                 tcp port 143                        system defined
+Default mapping:  time                 udp port 37                         system defined
+Default mapping:  bootps               udp port 67                         system defined
+Default mapping:  tftp                 udp port 69                         system defined
+Default mapping:  oracle               udp port 2005                       system defined
+Default mapping:  snmptrap             udp port 162                        system defined
+Default mapping:  http                 tcp port 80                         system defined
+Default mapping:  qmtp                 tcp port 209                        system defined
+Default mapping:  qmtp                 udp port 209                        system defined
+Default mapping:  radius               udp port 1812,1813                  system defined
+Default mapping:  oracle-em-vp         tcp port 1748...1809                system defined
+Default mapping:  oracle-em-vp         udp port 1748,1754                  system defined
+Default mapping:  tarantella           tcp port 3144                       system defined
+Default mapping:  pcanywheredata       tcp port 5631                       system defined
+Default mapping:  ldap                 tcp port 389                        system defined
+Default mapping:  mgcp                 udp port 2427                       system defined
+Default mapping:  sqlsrv               tcp port 156                        system defined
+Default mapping:  hsrp                 udp port 1985                       system defined
+Default mapping:  cisco-net-mgmt       tcp port 1741,1993                  system defined
+Default mapping:  cisco-net-mgmt       udp port 1993                       system defined
+Default mapping:  smtp                 tcp port 25                         system defined
+Default mapping:  pcanywherestat       udp port 5632                       system defined
+Default mapping:  exec                 tcp port 512                        system defined
+Default mapping:  bittorrent           tcp port 6881...6884                system defined
+Default mapping:  bittorrent           tcp port 6885...6888                system defined
+Default mapping:  bittorrent           tcp port 6889                       system defined
+Default mapping:  send                 tcp port 169                        system defined
+Default mapping:  send                 udp port 169                        system defined
+Default mapping:  stun                 udp port 1990...1994                system defined
+Default mapping:  stun                 tcp port 1990...1994                system defined
+Default mapping:  syslog               udp port 514                        system defined
+Default mapping:  ms-sql-m             udp port 1434                       system defined
+Default mapping:  citrix               udp port 2512...2897                system defined
+Default mapping:  citrix               tcp port 2512...2897                system defined
+Default mapping:  creativeserver       udp port 453                        system defined
+Default mapping:  creativeserver       tcp port 453                        system defined
+Default mapping:  cifs                 udp port 3020                       system defined
+Default mapping:  cifs                 tcp port 3020                       system defined
+Default mapping:  cisco-sys            tcp port 132                        system defined
+Default mapping:  cisco-sys            udp port 132                        system defined
+Default mapping:  cisco-tna            tcp port 131                        system defined
+Default mapping:  cisco-tna            udp port 131                        system defined
+Default mapping:  ms-dotnetster        udp port 3126                       system defined
+Default mapping:  ms-dotnetster        tcp port 3126                       system defined
+Default mapping:  gtpv1                tcp port 2123                       system defined
+Default mapping:  gtpv1                udp port 2123                       system defined
+Default mapping:  gtpv0                tcp port 3386                       system defined
+Default mapping:  gtpv0                udp port 3386                       system defined
+Default mapping:  imap3                tcp port 220                        system defined
+Default mapping:  fcip-port            tcp port 3225                       system defined
+Default mapping:  netbios-dgm          udp port 138                        system defined
+Default mapping:  netbios-ssn          tcp port 139                        system defined
+Default mapping:  sip-tls              tcp port 5061                       system defined
+Default mapping:  sip-tls              udp port 5061                       system defined
+Default mapping:  pop3s                tcp port 995                        system defined
+Default mapping:  cisco-fna            tcp port 130                        system defined
+Default mapping:  cisco-fna            udp port 130                        system defined
+Default mapping:  802-11-iapp          udp port 3517                       system defined
+Default mapping:  802-11-iapp          tcp port 3517                       system defined
+Default mapping:  oem-agent            udp port 3872                       system defined
+Default mapping:  oem-agent            tcp port 3872                       system defined
+Default mapping:  cisco-tdp            tcp port 711                        system defined
+Default mapping:  cisco-tdp            udp port 711                        system defined
+Default mapping:  tr-rsrb              udp port 1987...1996                system defined
+Default mapping:  tr-rsrb              tcp port 1987...1996                system defined
+Default mapping:  r-winsock            udp port 1745                       system defined
+Default mapping:  sql-net              tcp port 1521,150                   system defined
+Default mapping:  syslog-conn          tcp port 601                        system defined
+Default mapping:  tacacs-ds            tcp port 65                         system defined
+Default mapping:  h225ras              udp port 1719                       system defined
+Default mapping:  ace-svr              udp port 2475,2476                  system defined
+Default mapping:  ace-svr              tcp port 2475,2476                  system defined
+Default mapping:  dhcp-failover        tcp port 647                        system defined
+Default mapping:  igmpv3lite           udp port 465                        system defined
+Default mapping:  kazaa2               tcp port                            system defined
+Default mapping:  irc-serv             udp port 529                        system defined
+Default mapping:  entrust-svcs         tcp port 640,680,681                system defined
+Default mapping:  entrust-svcs         udp port 640,680,681                system defined
+Default mapping:  dbcontrol_agent      udp port 3938                       system defined
+Default mapping:  dbcontrol_agent      tcp port 3938                       system defined
+Default mapping:  cisco-svcs           tcp port 1986...1999                system defined
+Default mapping:  cisco-svcs           udp port 1986...1997                system defined
+Default mapping:  ipsec-msft           udp port 4500                       system defined
+Default mapping:  microsoft-ds         udp port 445                        system defined
+Default mapping:  ms-sna               tcp port 1477,1478                  system defined
+Default mapping:  rsvp_tunnel          udp port 363                        system defined
+Default mapping:  rsvp-encap           tcp port 1698,1699                  system defined
+Default mapping:  rsvp-encap           udp port 1698,1699                  system defined
+Default mapping:  hp-collector         udp port 381                        system defined
+Default mapping:  hp-collector         tcp port 381                        system defined
+Default mapping:  netbios-ns           udp port 137                        system defined
+Default mapping:  msexch-routing       tcp port 691                        system defined
+Default mapping:  h323                 tcp port 1720                       system defined
+Default mapping:  l2tp                 udp port 1701                       system defined
+Default mapping:  ldap-admin           udp port 3407                       system defined
+Default mapping:  ldap-admin           tcp port 3407                       system defined
+Default mapping:  pop3                 tcp port 110                        system defined
+Default mapping:  h323callsigalt       tcp port 11720                      system defined
+Default mapping:  h323callsigalt       udp port 11720                      system defined
+Default mapping:  ms-sql               tcp port 1433                       system defined
+Default mapping:  iscsi-target         tcp port 3260                       system defined
+Default mapping:  webster              tcp port 765                        system defined
+Default mapping:  lotusnote            tcp port 1352                       system defined
+Default mapping:  ipx                  udp port 213                        system defined
+Default mapping:  citriximaclient      tcp port 2598                       system defined
+Default mapping:  rtc-pm-port          udp port 3891                       system defined
+Default mapping:  rtc-pm-port          tcp port 3891                       system defined
+Default mapping:  ftp                  tcp port 21                         system defined
+Default mapping:  aol                  tcp port 5190-5192                  system defined
+Default mapping:  aol                  udp port 5190-5192                  system defined
+Default mapping:  xdmcp                udp port 177                        system defined
+Default mapping:  oraclenames          udp port 1575                       system defined
+Default mapping:  oraclenames          tcp port 1575                       system defined
+Default mapping:  login                tcp port 513                        system defined
+Default mapping:  iscsi                tcp port 860                        system defined
+Default mapping:  ttc                  udp port 2483,2484                  system defined
+Default mapping:  ttc                  tcp port 2483,2484                  system defined
+Default mapping:  winmx                tcp port 6699                       system defined
+Default mapping:  imaps                tcp port 993                        system defined
+Default mapping:  socks                tcp port 1080                       system defined
+Default mapping:  ssh                  tcp port 22                         system defined
+Default mapping:  ssh                  udp port 22                         system defined
+Default mapping:  dnsix                tcp port 90                         system defined
+Default mapping:  daytime              tcp port 13                         system defined
+Default mapping:  daytime              udp port 13                         system defined
+Default mapping:  sip                  udp port 5060                       system defined
+Default mapping:  discard              tcp port 9                          system defined
+Default mapping:  discard              udp port 9                          system defined
+Default mapping:  ntp                  udp port 123                        system defined
+Default mapping:  ldaps                tcp port 636                        system defined
+Default mapping:  ldaps                udp port 636                        system defined
+Default mapping:  https                tcp port 443                        system defined
+Default mapping:  vdolive              tcp port 7000                       system defined
+Default mapping:  ica                  tcp port 1494                       system defined
+Default mapping:  net8-cman            udp port 1630,1830                  system defined
+Default mapping:  net8-cman            tcp port 1630,1830                  system defined
+Default mapping:  cuseeme              tcp port 7648                       system defined
+Default mapping:  netstat              tcp port 15                         system defined
+Default mapping:  netstat              udp port 15                         system defined
+Default mapping:  sms                  udp port 2701...2703                system defined
+Default mapping:  sms                  tcp port 2701...2703                system defined
+Default mapping:  streamworks          udp port 1558                       system defined
+Default mapping:  fasttrack            tcp port 1214                       system defined
+Default mapping:  rtelnet              tcp port 107                        system defined
+Default mapping:  who                  udp port 513                        system defined
+Default mapping:  ssp                  udp port 3249                       system defined
+Default mapping:  ssp                  tcp port 3249                       system defined
+Default mapping:  dbase                tcp port 217                        system defined
+Default mapping:  dbase                udp port 217                        system defined
+Default mapping:  timed                udp port 525                        system defined
+Default mapping:  cddbp                tcp port 888                        system defined
+Default mapping:  telnets              tcp port 992                        system defined
+Default mapping:  ymsgr                tcp port 5050                       system defined
+Default mapping:  ident                tcp port 113                        system defined
+Default mapping:  directconnect        tcp port 411,412,413                system defined
+Default mapping:  bgp                  tcp port 179                        system defined
+Default mapping:  h225rasMcast         udp port 1718                       system defined
+Default mapping:  ddns-v3              udp port 2164                       system defined
+Default mapping:  ddns-v3              tcp port 2164                       system defined
+Default mapping:  vqp                  tcp port 1589                       system defined
+Default mapping:  vqp                  udp port 1589                       system defined
+Default mapping:  edonkey              tcp port 4662                       system defined
+Default mapping:  irc                  tcp port 194                        system defined
+Default mapping:  ipass                udp port 2549                       system defined
+Default mapping:  ipass                tcp port 2549                       system defined
+Default mapping:  x11                  tcp port 6000-6606                  system defined
+Default mapping:  dns                  udp port 53                         system defined
+Default mapping:  dns                  tcp port 53                         system defined
+Default mapping:  lotusmtap            udp port 3007                       system defined
+Default mapping:  lotusmtap            tcp port 3007                       system defined
+Default mapping:  mysql                udp port 3306                       system defined
+Default mapping:  mysql                tcp port 3306                       system defined
+Default mapping:  nfs                  tcp port 2049                       system defined
+Default mapping:  nfs                  udp port 2049                       system defined
+Default mapping:  msnmsgr              tcp port 1863                       system defined
+Default mapping:  netshow              tcp port 1755                       system defined
+Default mapping:  sqlserv              tcp port 118                        system defined
+Default mapping:  sqlserv              udp port 118                        system defined
+Default mapping:  hp-managed-node      udp port 382                        system defined
+Default mapping:  hp-managed-node      tcp port 382                        system defined
+Default mapping:  ncp                  tcp port 524                        system defined
+Default mapping:  ncp                  udp port 524                        system defined
+Default mapping:  shell                tcp port 514                        system defined
+Default mapping:  realmedia            tcp port 7070                       system defined
+Default mapping:  msrpc                tcp port 135                        system defined
+Default mapping:  clp                  udp port 2567                       system defined
+Default mapping:  clp                  tcp port 2567                       system defined
+
+EDGE(config)#
+==========================================================================================
+EDGE(config)#ip inspect name ccie tcp
+EDGE(config)#ip inspect name ccie icmp
+EDGE(config)#int f0/1
+EDGE(config-if)#ip inspect ccie out
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+EDGE(config)#ip access-list extended 100
+EDGE(config-ext-nacl)#deny ip any any log
+EDGE(config-ext-nacl)#int f0/1
+EDGE(config-if)#ip access-group 100 in
+=========================================================================================
+add some new information in CBAC DB
++++++++++++++++++++++++++++++++++++
+
+EDGE#show ip port-map | in http
+Default mapping:  http                 tcp port 80                         system defined
+Default mapping:  https                tcp port 443                        system defined
+EDGE#
+-----------------------------------------------------------------------------------------
+EDGE(config)#ip port-map http port tcp 8080
+EDGE(config)#
+new information about http protocol by system defined 80,443 but user define 8080
+-----------------------------------------------------------------------------------------
+EDGE#show ip port-map | in http
+Default mapping:  http                 tcp port 80                         system defined
+Default mapping:  http                 tcp port 8080                       user defined
+Default mapping:  https                tcp port 443                        system defined
+EDGE#
+
