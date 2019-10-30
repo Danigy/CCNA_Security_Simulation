@@ -1,0 +1,44 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[7200]]
+        image = C:\cisco\1.Router IOS for GNS3\c7200-advipservicesk9-mz.152-4.S5.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        console = 2001
+        aux = 2501
+        slot1 = PA-2FE-TX
+        f1/0 = nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
+        cnfg = configs\R1.cfg
+        x = -367.0
+        y = -95.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[3725]]
+        image = C:\cisco\1.Router IOS for GNS3\c3725-adventerprisek9-mz124-15.bin
+        ram = 512
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        model = 3725
+        console = 2003
+        aux = 2503
+        cnfg = configs\R2.cfg
+        x = -53.0
+        y = 102.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[Cloud C1]]
+        x = 219.5
+        y = -107.0
+        z = 1.0
+        connections = R1:f1/0:nio_gen_eth:\device\npf_{c64782f0-a8f9-421a-81ed-cdc27c2875fa}
