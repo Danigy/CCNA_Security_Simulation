@@ -1,0 +1,104 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7202]
+    workingdir = working
+    udp = 10200
+    [[7200]]
+        image = C:\cisco\router\c7200-jk9o3s-mz.124-19.bin
+        ram = 512
+        idlepc = 0x60664b98
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        console = 2004
+        aux = 2504
+        slot1 = PA-2FE-TX
+        f1/0 = ASA1 e2
+        cnfg = configs\R3.cfg
+        x = 222.0
+        y = 96.0
+        z = 1.0
+[qemu 127.0.0.1:10525]
+    workingdir = working
+    udp = 20000
+    [[5520]]
+        ram = 1024
+        netcard = e1000
+        options = -vnc none -vga none -m 1024 -icount auto -hdachs 980,16,32
+        initrd = C:\cisco\ASA\asa842-initrd.gz
+        kernel = C:\cisco\ASA\asa842-vmlinuz
+        kernel_cmdline = append ide_generic.probe_mask=0x01 ide_core.chs=0.0:980,16,32 auto nousb console=ttyS0,9600 bigphysarea=65536
+    [[ASA ASA1]]
+        e1 = R2 f1/0
+        e2 = R3 f1/0
+        x = -51.0
+        y = -212.0
+        z = 1.0
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[2621]]
+        image = C:\cisco\router\c2600-ik2s-mz.121-27b.bin
+        ram = 512
+        sparsemem = True
+        ghostios = True
+        chassis = 2621
+    [[ROUTER R1]]
+        model = 2621
+        console = 2001
+        aux = 2501
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[7200]]
+        image = C:\cisco\router\c7200-jk9o3s-mz.124-19.bin
+        ram = 512
+        idlepc = 0x60664b98
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R2]]
+        console = 2003
+        aux = 2503
+        slot1 = PA-2FE-TX
+        f1/0 = ASA1 e1
+        cnfg = configs\R2.cfg
+        x = -277.0
+        y = 97.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 20.1.1.0/24\nDoveloper\n99\nSSH
+        x = 150.0
+        y = -79.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 10.1.1.0/24\nNetwork\n100\nTelnet
+        x = -228.0
+        y = -91.0
+        z = 2.0
+    [[NOTE 3]]
+        text = f1/0
+        x = -33.5323005726
+        y = -14.9338775691
+        interface = R3 f1/0
+        z = 2.0
+    [[NOTE 4]]
+        text = f1/0
+        x = 63.6137601247
+        y = -19.286070259
+        interface = R2 f1/0
+        z = 2.0
+    [[NOTE 5]]
+        text = e2
+        x = 68.5323005726
+        y = 34.9338775691
+        interface = ASA1 e2
+        z = 2.0
+    [[NOTE 6]]
+        text = e1
+        x = -23.6137601247
+        y = 35.286070259
+        interface = ASA1 e1
+        z = 2.0

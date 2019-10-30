@@ -1,0 +1,33 @@
+===================================for Telnet=======================================
+ciscoasa(config)# telnet 10.1.1.0 255.255.255.0 network
+====================================================================================
+==============================for kill user connection==============================
+ciscoasa(config)# who
+        0: 10.1.1.2
+ciscoasa(config)# kill 0
+====================================================================================
+=================================for ssh============================================
+ciscoasa(config)# domain-name jonwish.com
+ciscoasa(config)# crypto key generate rsa modulus 1024
+INFO: The name for the keys will be: <Default-RSA-Key>
+Keypair generation process begin. Please wait...
+ciscoasa(config)# username cisco password cisco privilege 15
+ciscoasa(config)# ssh 20.1.1.0 255.255.255.0 doveloper
+ciscoasa(config)# aaa authentication ssh console LOCAL
+==============================log in ssh using router============================== 
+R3#ssh -l cisco 20.1.1.1
+
+Password:
+==================================[l means username]===============================
+
+ciscoasa(config)# telnet timeout ?
+
+configure mode commands/options:
+  <1-1440>  Idle time in minutes after which a telnet session will be closed;
+            default is 5 minutes
+  <cr>
+ciscoasa(config)# ssh timeout ?
+
+configure mode commands/options:
+  <1-60>  Idle time in minutes after which a ssh session will be closed
+ciscoasa(config)# ssh disconnect 0
