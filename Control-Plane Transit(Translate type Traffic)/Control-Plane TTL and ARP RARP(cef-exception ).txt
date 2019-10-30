@@ -1,0 +1,34 @@
+R1(config)#class-map cmap
+R1(config-cmap)#match protocol a?
+aarp  appletalk  arp
+
+R1(config-cmap)#match protocol arp
+
+R1(config)#policy-map pmap
+R1(config-pmap)#class cmap
+R1(config-pmap-c)#drop
+
+R1(config)#control-plane ?
+  cef-exception  Cef-exception traffic control-plane configuration
+  host           Host traffic control-plane configuration
+  transit        Transit traffic control-plane configuration
+  <cr>
+
+R1(config)#control-plane cef-exception
+R1(config-cp-cef-exception)#service-policy input pmap
+R1(config-cp-cef-exception)#
+*Mar  1 00:18:36.555: %CP-5-FEATURE: Control-plane Policing feature enabled on Control plane cef-exception path
+
+
+R1(config)#policy-map pmap
+R1(config-pmap)#class cmap
+R1(config-pmap-c)#police rate 50 pps
+Must deconfigure drop in this class  before issuing this command
+
+R1#clear arp-cache
+R1#show control-plane counters
+Feature Path             Packets processed/dropped/errors
+Aggregate                      74/0/0
+Host                           43/0/0
+Transit                         0/0/0
+Cef-exception                  31/9/0
