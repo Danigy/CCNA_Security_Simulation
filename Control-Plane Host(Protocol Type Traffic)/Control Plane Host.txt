@@ -1,0 +1,23 @@
+R2(config)#ip access-list extended 111
+R2(config-ext-nacl)#permit tcp any any eq 23
+
+R2(config-ext-nacl)#class-map cmap
+R2(config-cmap)#match access-group 111
+
+R2(config)#policy-map pmap
+R2(config-pmap)#class cmap
+R2(config-pmap-c)#drop
+
+R2(config)#control-plane host
+R2(config-cp-host)#service-policy input pmap
+R2(config-cp-host)#
+*Mar  1 01:52:36.739: %CP-5-FEATURE: Control-plane Policing feature enabled on Control plane host path
+
+
+R2#show control-plane counters
+Feature Path             Packets processed/dropped/errors
+Aggregate                     209/0/0
+Host                            9/0/0
+Transit                         0/0/0
+Cef-exception                 200/0/0
+

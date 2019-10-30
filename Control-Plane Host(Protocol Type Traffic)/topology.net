@@ -1,0 +1,85 @@
+autostart = False
+version = 0.8.2-BETA
+[127.0.0.1:7200]
+    workingdir = working
+    udp = 10000
+    [[3725]]
+        image = C:\cisco\1.Router IOS for GNS3\c3725-adventerprisek9-mz124-15.bin
+        ram = 256
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R1]]
+        model = 3725
+        console = 2001
+        aux = 2501
+        cnfg = configs\R1.cfg
+        f0/0 = R2 f0/0
+        x = -332.0
+        y = -216.0
+        z = 1.0
+    [[ROUTER R2]]
+        model = 3725
+        console = 2002
+        aux = 2502
+        cnfg = configs\R2.cfg
+        f0/0 = R1 f0/0
+        f0/1 = R3 f0/0
+        x = -3.0
+        y = -214.0
+        z = 1.0
+[127.0.0.1:7201]
+    workingdir = working
+    udp = 10100
+    [[3725]]
+        image = C:\cisco\1.Router IOS for GNS3\c3725-adventerprisek9-mz124-15.bin
+        ram = 256
+        idlepc = 0x60aa1da0
+        sparsemem = True
+        ghostios = True
+    [[ROUTER R3]]
+        model = 3725
+        console = 2003
+        aux = 2503
+        cnfg = configs\R3.cfg
+        f0/0 = R2 f0/1
+        x = 331.0
+        y = -216.0
+        z = 1.0
+[GNS3-DATA]
+    configs = configs
+    workdir = working
+    [[NOTE 1]]
+        text = 23.0.0.0/24
+        x = 148.0
+        y = -219.0
+        z = 2.0
+    [[NOTE 2]]
+        text = 12.0.0.0/24
+        x = -199.0
+        y = -229.0
+        z = 2.0
+    [[NOTE 3]]
+        text = f0/0
+        x = -36.9992828907
+        y = 21.239516664
+        interface = R3 f0/0
+        z = 2.0
+    [[NOTE 4]]
+        text = f0/1
+        x = 69.9992828907
+        y = 19.760483336
+        interface = R2 f0/1
+        z = 2.0
+    [[NOTE 5]]
+        text = f0/0
+        x = -36.999260929
+        y = 21.7568433986
+        interface = R2 f0/0
+        z = 2.0
+    [[NOTE 6]]
+        text = f0/0
+        x = 72.999260929
+        y = 22.2431566014
+        interface = R1 f0/0
+        z = 2.0
